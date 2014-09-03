@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Mobile_PSG</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="Connect">Start Mobile PSG</string>
+    <string name="Query">Send Query</string>
+    <string name="Leave">Leave</string>
+    <string name="title_activity_data_comm">DataComm</string>
+    <string name="title_activity_network_manager">NetworkManager</string>
+    <string name="title_activity_main">MainActivity</string>
+
+</resources>
