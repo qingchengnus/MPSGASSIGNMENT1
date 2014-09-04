@@ -2,28 +2,28 @@
 <pre-dex-items>
 
     <item
-        dex="/Users/cqing/android/MpsgStarter1/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.0-rc1-9da56907a54bc62b80b021d0066dc3e5625c73ba.jar"
-        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0-rc1/support-annotations-21.0.0-rc1.jar"
+        dex="/Users/zhixing/Documents/Dropbox/Programs/Workspaces/AndroidWorkspace/MPSGASSIGNMENT1/app/build/intermediates/pre-dexed/debug/classes-0bb74e66fb1a3e716057434ed86a1ef1f2a58a8f.jar"
+        jar="/Users/zhixing/Documents/Dropbox/Programs/Workspaces/AndroidWorkspace/MPSGASSIGNMENT1/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0-rc1/classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="57c343f05b73b923bf2502b05851dbfe12193dcb"/>
+        sha1="7ae84435ebc95f67a3f5e511025e96caa8688da2"/>
     <item
-        dex="/Users/cqing/android/MpsgStarter1/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-rc1-5fee3b0b17b235ed96fa829dbb2c42ae6b8413b7.jar"
-        jar="/Users/cqing/android/MpsgStarter1/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0-rc1/libs/internal_impl-21.0.0-rc1.jar"
+        dex="/Users/zhixing/Documents/Dropbox/Programs/Workspaces/AndroidWorkspace/MPSGASSIGNMENT1/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-rc1-c991b9f4f41f5c9c5e63d44033cd23e91258ebfc.jar"
+        jar="/Users/zhixing/Documents/Dropbox/Programs/Workspaces/AndroidWorkspace/MPSGASSIGNMENT1/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0-rc1/libs/internal_impl-21.0.0-rc1.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="d1a625e8a94bf7c73e0f9d30ad1b483ff6ea64e9"/>
     <item
-        dex="/Users/cqing/android/MpsgStarter1/app/build/intermediates/pre-dexed/debug/org.xbill.dns_2.1.6-4812d688b60e30886bb6fade207590b8d56fe131.jar"
-        jar="/Users/cqing/android/MpsgStarter1/app/libs/org.xbill.dns_2.1.6.jar"
+        dex="/Users/zhixing/Documents/Dropbox/Programs/Workspaces/AndroidWorkspace/MPSGASSIGNMENT1/app/build/intermediates/pre-dexed/debug/org.xbill.dns_2.1.6-f69277beae02996557b4781029140dc92397b030.jar"
+        jar="/Users/zhixing/Documents/Dropbox/Programs/Workspaces/AndroidWorkspace/MPSGASSIGNMENT1/app/libs/org.xbill.dns_2.1.6.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="c181799179cbd3aad85439268ec65ddb0b0c96f8"/>
     <item
-        dex="/Users/cqing/android/MpsgStarter1/app/build/intermediates/pre-dexed/debug/classes-0a6987f8153082ccb9f97cbb73e63498f0bf68d9.jar"
-        jar="/Users/cqing/android/MpsgStarter1/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0-rc1/classes.jar"
+        dex="/Users/zhixing/Documents/Dropbox/Programs/Workspaces/AndroidWorkspace/MPSGASSIGNMENT1/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.0-rc1-9da56907a54bc62b80b021d0066dc3e5625c73ba.jar"
+        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0-rc1/support-annotations-21.0.0-rc1.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="7ae84435ebc95f67a3f5e511025e96caa8688da2"/>
+        sha1="57c343f05b73b923bf2502b05851dbfe12193dcb"/>
 
 </pre-dex-items>

@@ -60,7 +60,7 @@ public class MPSG {
 	// Temporary query string to be sent to the proxy
 	String queryString = mpsgName + ";query:select person.preference from person where person.name = \"testmpsgname1\"";
 	//String queryString = mpsgName + ";query:select person.magnetism from person where person.acceleration = \"fast\" and person.gravity=\"medium\"";
-//	String queryString = mpsgName + ";query:select person.location,person.magnetism from person where person.acceleration = \"fast\" and person.name = \"testmpsgname2\"";// ) or ( person.acceleration = \"fast\" and person.magnetism = \"positive\" )";
+    //	String queryString = mpsgName + ";query:select person.location,person.magnetism from person where person.acceleration = \"fast\" and person.name = \"testmpsgname2\"";// ) or ( person.acceleration = \"fast\" and person.magnetism = \"positive\" )";
 	
 	MPSG(Context context, int port) {
 		serverPort = port;
@@ -240,26 +240,11 @@ public class MPSG {
 	 * Initiate a query request to the proxy
 	 * 
 	 */
-	public void sendQuery(ArrayList<String> queryAttr) {
+	public void sendQuery(String queryString) {
 
-
-		// conn object will be set during connect call
-		String qString = mpsgName + ";query:select ";
-        //";query:select person.preference from person where person.name = \"testmpsgname1\"";
-
-        for (String attr : queryAttr) {
-            qString = qString + "person." + attr.toLowerCase() + ",";
-        }
-
-        qString = qString.substring(0, qString.length() - 1);
-
-        qString += " from person where person.name = \"testmpsgname1\"";
-
-		// Send the query through the socket connection with proxy
-        Log.d("qs", qString);
 		try {
 			Log.d("MPSG", "Sending the query to the proxy");
-			conn.sendQuery(qString);
+			conn.sendQuery(mpsgName + queryString);
 		} catch (Exception e) {
 			Log.d("MPSG", "Error in sending query to the proxy");
 		}

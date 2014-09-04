@@ -21,14 +21,27 @@ public final class R {
         public static final int option_selected=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f080009;
+        public static final int Gravity_field=0x7f080012;
+        public static final int Location_field=0x7f08000b;
+        public static final int acceleration_field=0x7f080011;
+        public static final int action_field=0x7f08000e;
+        public static final int action_settings=0x7f080016;
         public static final int attribute_list=0x7f080006;
-        public static final int attribute_name=0x7f080008;
+        public static final int attribute_name=0x7f080015;
         public static final int button1=0x7f080000;
         public static final int button2=0x7f080001;
         public static final int buttons=0x7f080003;
+        public static final int conditions_view=0x7f080008;
+        public static final int is_busy_field=0x7f08000c;
         public static final int leave=0x7f080004;
-        public static final int query=0x7f080005;
+        public static final int magnetism_field=0x7f080013;
+        public static final int mood_field=0x7f080010;
+        public static final int name_field=0x7f080009;
+        public static final int navigation_button=0x7f080005;
+        public static final int power_field=0x7f08000f;
+        public static final int preference_field=0x7f08000a;
+        public static final int query=0x7f080014;
+        public static final int speed_field=0x7f08000d;
         public static final int submit=0x7f080002;
         public static final int textView1=0x7f080007;
     }

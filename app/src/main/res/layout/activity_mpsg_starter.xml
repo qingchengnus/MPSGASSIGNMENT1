@@ -23,16 +23,18 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/buttons">
+
         <Button
             android:id="@+id/leave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Leave" />
+
         <Button
-            android:id="@+id/query"
+            android:id="@+id/navigation_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Query"/>
+            android:text="Next"/>
 
 
     </LinearLayout>
@@ -51,14 +53,89 @@
             android:visibility="invisible"
             android:choiceMode="multipleChoice"/>
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/textView1"/>
-        </LinearLayout>
 
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/conditions_view"
+        android:layout_below="@+id/buttons"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/name_field"
+                    android:hint="Name"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/preference_field"
+                    android:hint="Preference"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/Location_field"
+                    android:hint="Location"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/is_busy_field"
+                    android:hint="Is Busy"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/speed_field"
+                    android:hint="Speed"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/action_field"
+                    android:hint="Action"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/power_field"
+                    android:hint="Power"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/mood_field"
+                    android:hint="Mood"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/acceleration_field"
+                    android:hint="Acceleration"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/Gravity_field"
+                    android:hint="Gravity"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:id="@+id/magnetism_field"
+                    android:hint="Magnetism"/>
+                <Button
+                    android:id="@+id/query"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Query"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

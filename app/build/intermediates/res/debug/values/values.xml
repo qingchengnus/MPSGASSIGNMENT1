@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/Users/cqing/android/MpsgStarter1/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/zhixing/Documents/Dropbox/Programs/Workspaces/AndroidWorkspace/MPSGASSIGNMENT1/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/Users/cqing/android/MpsgStarter1/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/zhixing/Documents/Dropbox/Programs/Workspaces/AndroidWorkspace/MPSGASSIGNMENT1/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="Connect">Start Mobile PSG</string>
@@ -18,7 +18,7 @@
     <string name="title_activity_data_comm">DataComm</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_network_manager">NetworkManager</string>
-    <!-- From: file:/Users/cqing/android/MpsgStarter1/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/zhixing/Documents/Dropbox/Programs/Workspaces/AndroidWorkspace/MPSGASSIGNMENT1/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="AppBaseTheme" parent="android:Theme.Light">

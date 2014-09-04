@@ -1,12 +1,9 @@
 package mobile_psg.mpsgStarter;
 
-import java.io.BufferedReader;
-import java.net.InetAddress;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import mobile_psg.sensorMonitor.ContextUpdatingService;
-import mobile_psg.tcpsession.TCP_Session_Handler;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,11 +17,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.content.Intent;
 import android.widget.Toast;
+import android.widget.ScrollView;
 
 import com.example.mobile_psg.R;
 
@@ -34,6 +31,8 @@ public class MpsgStarter extends Activity {
     private Button connect;
     private Button query;
     private Button leave;
+    private Button navigationButton;
+    private Boolean isUserAtConditionPage;
     private static TextView errorStr;
 
     private int timeout = 10; //10 seconds timeout for connecting
@@ -45,7 +44,8 @@ public class MpsgStarter extends Activity {
     private static String connStatus = "Start MPSG";
     private static String resultString = "";
     private static String queryStatus = "invisible";
-    private ListView listView;
+    private ListView attributesListView;
+    private ScrollView conditionsScrollView;
     private ArrayList<String> attributes;
 
     @Override
@@ -68,6 +68,11 @@ public class MpsgStarter extends Activity {
         leave = (Button) findViewById(R.id.leave);
         leave.setOnClickListener(leaveSendListener);
         leave.setVisibility(View.INVISIBLE);
+
+        navigationButton = (Button) findViewById(R.id.navigation_button);
+        navigationButton.setOnClickListener(navigationButtonListener);
+        isUserAtConditionPage = false;
+        navigationButton.setVisibility(View.INVISIBLE);
 
         mHandler = new Handler();
         mHandler.post(updateText);
@@ -108,9 +113,9 @@ public class MpsgStarter extends Activity {
 
         selectedAttributes = new int[attributes.size()];
         ArrayAdapter<String> arrayAdapter = new ContextAttributeAdapter(MpsgStarter.this, R.layout.list_item_layout, attributes);
-        listView = (ListView) findViewById(R.id.attribute_list);
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        attributesListView = (ListView) findViewById(R.id.attribute_list);
+        attributesListView.setAdapter(arrayAdapter);
+        attributesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedAttributes[i] = 1 - selectedAttributes[i];
@@ -120,6 +125,8 @@ public class MpsgStarter extends Activity {
             }
         });
 
+        conditionsScrollView = (ScrollView) findViewById(R.id.conditions_view);
+        conditionsScrollView.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -184,7 +191,8 @@ public class MpsgStarter extends Activity {
                 queryStatus = "visible";
                 query.setVisibility(View.VISIBLE);
                 leave.setVisibility(View.VISIBLE);
-                listView.setVisibility(View.VISIBLE);
+                attributesListView.setVisibility(View.VISIBLE);
+                navigationButton.setVisibility(View.VISIBLE);
 
             } else {
                 registerEndTime = System.currentTimeMillis();
@@ -195,24 +203,110 @@ public class MpsgStarter extends Activity {
         }
     };
 
+    private OnClickListener navigationButtonListener = new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (!isUserAtConditionPage){
+                        updateViewOnConditionPage();
+                    } else {
+                        updateViewOnAttributePage();
+                    }
+                }
+            });
+
+            isUserAtConditionPage = !isUserAtConditionPage;
+        }
+    };
+
     private OnClickListener querySendListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             // Start a new thread to send out the query
             Thread queryThread = new Thread() {
                 public void run() {
-                    ArrayList<String> selectedAttr = new ArrayList<String>();
-                    for (int i = 0; i < selectedAttributes.length; i ++) {
-                        if (selectedAttributes[i] == 1) {
-                            selectedAttr.add(attributes.get(i));
-                        }
-                    }
-                    mpsg.sendQuery(selectedAttr);
+                    mpsg.sendQuery(generateQueryString());
+
                 }
             };
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    conditionsScrollView.setVisibility(View.INVISIBLE);
+                }
+            });
             queryThread.start();
         }
     };
+
+    private String generateQueryString(){
+
+        ArrayList<String> selectedAttr = new ArrayList<String>();
+        for (int i = 0; i < selectedAttributes.length; i ++) {
+            if (selectedAttributes[i] == 1) {
+                selectedAttr.add(attributes.get(i));
+            }
+        }
+
+        // conn object will be set during connect call
+        String qString = ";query:select ";
+        //";query:select person.preference from person where person.name = \"testmpsgname1\"";
+
+        for (String attr : selectedAttr) {
+            qString = qString + "person." + attr.toLowerCase() + ",";
+        }
+
+        qString = qString.substring(0, qString.length() - 1);
+
+        qString += " from person where ";
+
+        ArrayList<String> ids = new ArrayList<String>();
+
+        ids.add("name_field");
+        ids.add("preference_field");
+        ids.add("Location_field");
+        ids.add("is_busy_field");
+        ids.add("speed_field");
+        ids.add("action_field");
+        ids.add("power_field");
+        ids.add("mood_field");
+        ids.add("acceleration_field");
+        ids.add("Gravity_field");
+
+        for(int i = 0; i < ids.size(); i++){
+            int resID = getResources().getIdentifier(ids.get(i), "id", getPackageName());
+            EditText textField = (EditText)findViewById(resID);
+
+            if (textField.getText().length() > 0){
+                qString += "person." + attributes.get(i).toLowerCase() + " = \"" + textField.getText() + "\" and ";
+            }
+        }
+
+        qString = qString.substring(0, qString.length() - 4);
+
+        // Send the query through the socket connection with proxy
+        Log.d("qs", qString);
+
+        return qString;
+    }
+
+    private void updateViewOnConditionPage(){
+        Button navigationButton = (Button)findViewById(R.id.navigation_button);
+        navigationButton.setText("Back");
+        findViewById(R.id.attribute_list).setVisibility(View.INVISIBLE);
+        findViewById(R.id.conditions_view).setVisibility(View.VISIBLE);
+    }
+
+    private void updateViewOnAttributePage(){
+        Button navigationButton = (Button)findViewById(R.id.navigation_button);
+        navigationButton.setText("Next");
+        findViewById(R.id.attribute_list).setVisibility(View.VISIBLE);
+        findViewById(R.id.conditions_view).setVisibility(View.INVISIBLE);
+    }
 
     public static void setQueryResult (String result) {
         Log.d("MPSG", "Setting query result to " + result);
@@ -239,7 +333,6 @@ public class MpsgStarter extends Activity {
                 }
             };
             leaveThread.start();
-            listView.setVisibility(View.GONE);
             int i = 0;
             // Wait for a result in registering through proxy
             while (MPSG.leaveStatusString.contentEquals("Disconnecting")) {
@@ -261,6 +354,11 @@ public class MpsgStarter extends Activity {
                 query.setVisibility(View.INVISIBLE);
                 leave.setVisibility(View.INVISIBLE);
                 resultString = "";
+
+                attributesListView.setVisibility(View.GONE);
+                conditionsScrollView.setVisibility(View.GONE);
+                navigationButton.setVisibility(View.INVISIBLE);
+
 
                 // Do cleanup of data structures
                 MPSG.conn = null;
